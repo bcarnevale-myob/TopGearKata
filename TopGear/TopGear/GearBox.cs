@@ -29,5 +29,10 @@ namespace TopGear
 		
             e = i;
         }
+
+        internal int GetS()
+        {
+            return s;
+        }
     }
 }
