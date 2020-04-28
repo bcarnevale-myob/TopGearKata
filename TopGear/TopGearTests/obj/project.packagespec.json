@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/Users/bianca.carnevale/work/Proteges/top-gear-csharp/TopGear/TopGearTests/TopGearTests.csproj",
+    "projectUniqueName": "/Users/sol.jennings/Dev/FMA/TopGearKata/TopGear/TopGearTests/TopGearTests.csproj",
     "projectName": "TopGearTests",
-    "projectPath": "/Users/bianca.carnevale/work/Proteges/top-gear-csharp/TopGear/TopGearTests/TopGearTests.csproj",
-    "outputPath": "/Users/bianca.carnevale/work/Proteges/top-gear-csharp/TopGear/TopGearTests/obj/",
+    "projectPath": "/Users/sol.jennings/Dev/FMA/TopGearKata/TopGear/TopGearTests/TopGearTests.csproj",
+    "outputPath": "/Users/sol.jennings/Dev/FMA/TopGearKata/TopGear/TopGearTests/obj/",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -57,7 +57,8 @@
         "net48"
       ],
       "assetTargetFallback": true,
-      "warn": true
+      "warn": true,
+      "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
     }
   }
 }
