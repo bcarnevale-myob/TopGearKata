@@ -1,22 +1,22 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/Users/bianca.carnevale/work/Proteges/top-gear-csharp/TopGear/TopGear/TopGear.csproj",
+    "projectUniqueName": "/Users/sol.jennings/Dev/FMA/TopGearKata/TopGear/TopGear/TopGear.csproj",
     "projectName": "TopGear",
-    "projectPath": "/Users/bianca.carnevale/work/Proteges/top-gear-csharp/TopGear/TopGear/TopGear.csproj",
-    "outputPath": "/Users/bianca.carnevale/work/Proteges/top-gear-csharp/TopGear/TopGear/obj/",
+    "projectPath": "/Users/sol.jennings/Dev/FMA/TopGearKata/TopGear/TopGear/TopGear.csproj",
+    "outputPath": "/Users/sol.jennings/Dev/FMA/TopGearKata/TopGear/TopGear/obj/",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
     ],
     "originalTargetFrameworks": [
-      "netcoreapp2.2"
+      "netstandard2.0"
     ],
     "sources": {
       "https://api.nuget.org/v3/index.json": {}
     },
     "frameworks": {
-      "netcoreapp2.2": {
+      "netstandard2.0": {
         "projectReferences": {}
       }
     },
@@ -27,12 +27,12 @@
     }
   },
   "frameworks": {
-    "netcoreapp2.2": {
+    "netstandard2.0": {
       "dependencies": {
-        "Microsoft.NETCore.App": {
+        "NETStandard.Library": {
           "suppressParent": "All",
           "target": "Package",
-          "version": "[2.2.0, )",
+          "version": "[2.0.3, )",
           "autoReferenced": true
         }
       },
@@ -45,7 +45,8 @@
         "net48"
       ],
       "assetTargetFallback": true,
-      "warn": true
+      "warn": true,
+      "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.200/RuntimeIdentifierGraph.json"
     }
   }
 }
