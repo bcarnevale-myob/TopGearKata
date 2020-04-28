@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TopGear
+﻿namespace TopGear
 {
     public class GearBox
     {
@@ -29,5 +27,8 @@ namespace TopGear
 		
             e = i;
         }
+
+        public int S() => s;
+        public int E() => e;
     }
 }
