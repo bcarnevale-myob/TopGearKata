@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace TopGear
+namespace GearBox.Tests
 {
     public class GearBoxTests
     {
