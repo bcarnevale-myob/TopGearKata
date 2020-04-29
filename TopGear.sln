@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopGearTests", "TopGearTests\TopGearTests.csproj", "{01EDD199-F0B1-4980-A6BF-1307EE5EF24C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GearBox.Tests", "GearBox.Tests\GearBox.Tests.csproj", "{01EDD199-F0B1-4980-A6BF-1307EE5EF24C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopGear", "TopGear\TopGear.csproj", "{752B71EE-40AC-4661-B226-D75EF271F9CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GearBox", "GearBox\GearBox.csproj", "{752B71EE-40AC-4661-B226-D75EF271F9CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
