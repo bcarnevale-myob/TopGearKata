@@ -5,7 +5,7 @@
 
         <IsPackable>false</IsPackable>
 
-        <RootNamespace>TopGear</RootNamespace>
+        <RootNamespace>GearBox.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
