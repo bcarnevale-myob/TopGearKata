@@ -23,8 +23,8 @@ This task comes with it's share of challenges:
 * Has zero automated tests
 
 What we do know:
-* The module takes one input, an integer reading that comes from the software which controls engine components.
-* The module exposes 2 values integer values which are read by an unknown number of systems,. including one which performs the mechanical gear shifting
+* The module takes one input, an integer reading that comes from the software which controls engine components
+* The module exposes two integer values which are read by an unknown number of systems, including one which performs the mechanical gear shifting
 * We are free to rename and refactor the code as long as it's exposed methods and properties are exactly the same
 
 What we have been told:
@@ -40,6 +40,6 @@ Requirements:
     * 1st -> 2nd: 2000rpm
     * 2nd -> 3rd: 2500rpm
     * 4th -> 3rd: 532rpm
-* These ranges need to be individually configurable for different models, this configuration is already determined and will be provided to the module when it is initialised. We aren't required to read the configuration from anywhere. For example another team could be tasked with deciding the ranges based on historical fuel consumption
+* These ranges need to be individually configurable for different models, this configuration is already determined and will be provided to the module when it is initialised. We aren't required to read the configuration from anywhere. For example, another team could be tasked with deciding the ranges based on historical fuel consumption
 * Stakeholders want us to guarantee that existing cars will continue to operate with 0% error as they have done for 10 years since initial release!
 * Stakeholders want us to guarantee that the software will continue to operate with the new capability for another 10 years! 
