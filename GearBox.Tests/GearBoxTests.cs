@@ -8,5 +8,5 @@ namespace GearBox.Tests
         public void TestNothing() {
             Assert.True(true);
         }
-    }
+    }    
 }
