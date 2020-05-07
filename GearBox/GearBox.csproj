@@ -4,11 +4,4 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <RootNamespace>GearBox</RootNamespace>
     </PropertyGroup>
-
-    <ItemGroup>
-        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-            <_Parameter1>GearBox.Tests</_Parameter1>
-        </AssemblyAttribute>
-    </ItemGroup>
-
 </Project>
