@@ -2,33 +2,47 @@
 {
     public class GearBox
     {
-        private int s = 0;
+        private int _gear = 0;
         private int e = 0;
 
-        public void DoIt(int i) {
-            if (s < 0) {
+
+
+        public void DoIt(int i)
+        {
+
+            if (_gear < 0)
+            {
                 // do nothing!
                 e = i;
-            } else {
-                if (s > 0) {
-                    if (i > 2000) {
-                        s++;
-                    } else if (i < 500) {
-                        s--;
+            }
+            else
+            {
+                if (_gear > 0)
+                {
+                    if (i > 2000)
+                    {
+                        _gear++;
+                    }
+                    else if (i < 500)
+                    {
+                        _gear--;
                     }
                 }
-            }	
-		
-            if (s > 6) {
-                s--;
-            } else if (s < 1) {
-                s++;
             }
-		
+
+            if (_gear > 6)
+            {
+                _gear--;
+            }
+            else if (_gear < 1)
+            {
+                _gear++;
+            }
+
             e = i;
         }
 
-        public int S() => s;
+        public int GetGear() => _gear;
         public int E() => e;
     }
 }
