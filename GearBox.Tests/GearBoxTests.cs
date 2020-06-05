@@ -10,7 +10,6 @@ namespace GearBox.Tests
         public void StartsInNeutral()
         {
             var gearbox = new GearBox();
-
             Assert.Equal(neutral, gearbox.GetGear());
         }
 
@@ -21,7 +20,7 @@ namespace GearBox.Tests
         public void ShiftsFromNeutralToFirstWithAnyRpm(int rpm)
         {
             var gearbox = new GearBox();
-            gearbox.DoIt(rpm);
+            gearbox.ChangeGears(rpm);
 
             Assert.Equal(1, gearbox.GetGear());
         }
@@ -32,18 +31,35 @@ namespace GearBox.Tests
         [InlineData(2001, 2)]
         public void ShiftsUpAtRpmGreaterThan2000(int rpm, int expectedGear)
         {
-            var gearbox = new GearBox();
-            gearbox.DoIt(0);
-            gearbox.DoIt(rpm);
+            var gearbox = CreateGearboxInGear(1);
+
+            gearbox.ChangeGears(rpm);
 
             Assert.Equal(expectedGear, gearbox.GetGear());
+        }
+
+        [Theory]
+        [InlineData(1999, 1)]
+        [InlineData(2000, 1)]
+        [InlineData(2001, 2)]
+        public void ShiftsUpAtRpmGreaterThan2000_WITHOUT_HELPER(int rpm, int expectedGear)
+        {
+            var gearbox = new GearBox();
+            gearbox.ChangeGears(2001); // shifting to first
+            gearbox.ChangeGears(2001); // second
+            gearbox.ChangeGears(2001); // third
+            gearbox.ChangeGears(2001); // fourth
+
+            gearbox.ChangeGears(rpm);
+
+            // Assert.Equal(expectedGear, gearbox.GetGear());
         }
 
         [Fact]
         public void HasMaximumSixGears()
         {
             var gearbox = new GearBox();
-            gearbox.DoIt(0);
+            gearbox.ChangeGears(0);
 
             ChangeUpGears(gearbox, 5);
             Assert.Equal(6, gearbox.GetGear());
@@ -56,13 +72,13 @@ namespace GearBox.Tests
         public void ShiftsUpAtRpmGreaterThan2000ForEveryGear()
         {
             var gearbox = new GearBox();
-            gearbox.DoIt(0);
+            gearbox.ChangeGears(0);
 
             for (var gear = 1; gear <= 5; gear++)
             {
-                gearbox.DoIt(2000);
+                gearbox.ChangeGears(2000);
                 Assert.Equal(gear, gearbox.GetGear());
-                gearbox.DoIt(2001);
+                gearbox.ChangeGears(2001);
                 Assert.Equal(gear + 1, gearbox.GetGear());
             }
         }
@@ -75,7 +91,7 @@ namespace GearBox.Tests
         {
             var gearbox = CreateGearboxInGear(2);
 
-            gearbox.DoIt(rpm);
+            gearbox.ChangeGears(rpm);
 
             Assert.Equal(expectedGear, gearbox.GetGear());
         }
@@ -88,7 +104,7 @@ namespace GearBox.Tests
         public void DoesNotShiftFromFirstToNeutral(int rpm)
         {
             var gearbox = CreateGearboxInGear(1);
-            gearbox.DoIt(rpm);
+            gearbox.ChangeGears(rpm);
 
             Assert.Equal(1, gearbox.GetGear());
         }
@@ -100,9 +116,9 @@ namespace GearBox.Tests
 
             for (var gear = 6; gear > 1; gear--)
             {
-                gearbox.DoIt(500);
+                gearbox.ChangeGears(500);
                 Assert.Equal(gear, gearbox.GetGear());
-                gearbox.DoIt(499);
+                gearbox.ChangeGears(499);
                 Assert.Equal(gear - 1, gearbox.GetGear());
             }
         }
@@ -111,7 +127,7 @@ namespace GearBox.Tests
         {
             for (var i = 0; i < numberOfGearsShifts; i++)
             {
-                gearbox.DoIt(2001);
+                gearbox.ChangeGears(2001);
             }
         }
 
@@ -120,7 +136,7 @@ namespace GearBox.Tests
             var gearbox = new GearBox();
             for (var i = 0; i < gear; i++)
             {
-                gearbox.DoIt(2001);
+                gearbox.ChangeGears(2001);
             }
 
             return gearbox;
