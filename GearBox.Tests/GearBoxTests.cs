@@ -9,10 +9,8 @@ namespace GearBox.Tests
         // 4. Maximum gear is 6
         // 5. Shifts down at RPM less than 500 until gear 1
         // 6. Never shifts from gear 1 back to neutral
-        
-        
         const int neutral = 0;
-        
+
         // 1. New gearbox starts in neutral
         [Fact]
         public void StartsInNeutral()
@@ -20,7 +18,7 @@ namespace GearBox.Tests
             var gearbox = new GearBox();
             Assert.Equal(neutral, gearbox.GetGear());
         }
-        
+
         // 2. Gearbox shifts from neutral to first gear with any RPM
         [Theory]
         [InlineData(int.MinValue)]
@@ -33,7 +31,7 @@ namespace GearBox.Tests
             gearbox.ChangeGears(rpm);
             Assert.Equal(1, gearbox.GetGear());
         }
-        
+
         // 3. From first gear onwards, shifts up with RPM greater than 2000
         [Theory]
         [InlineData(1999, 1)]
@@ -45,7 +43,7 @@ namespace GearBox.Tests
             gearbox.ChangeGears(rpm);
             Assert.Equal(expectedGear, gearbox.GetGear());
         }
-        
+
         // 3. From first gear onwards, shifts up with RPM greater than 2000
         [Fact]
         public void ShiftsUpAtRpmGreaterThan2000ForEveryGear()
@@ -59,7 +57,7 @@ namespace GearBox.Tests
                 Assert.Equal(gear + 1, gearbox.GetGear());
             }
         }
-        
+
         // 4. Maximum gear is 6
         [Fact]
         public void HasMaximumSixGears()
@@ -70,7 +68,7 @@ namespace GearBox.Tests
             ChangeUpGears(gearbox, 1);
             Assert.NotEqual(7, gearbox.GetGear());
         }
-        
+
         // 5. Shifts down at RPM less than 500 until gear 1
         [Theory]
         [InlineData(499, 1)]
@@ -82,7 +80,7 @@ namespace GearBox.Tests
             gearbox.ChangeGears(rpm);
             Assert.Equal(expectedGear, gearbox.GetGear());
         }
-        
+
         // 5. Shifts down at RPM less than 500 until gear 1
         [Fact]
         public void ShiftsDownAtRpmLessThan500ForEveryGear()
@@ -96,7 +94,7 @@ namespace GearBox.Tests
                 Assert.Equal(gear - 1, gearbox.GetGear());
             }
         }
-        
+
         // 6. Never shifts from gear 1 back to neutral
         [Theory]
         [InlineData(499)]
@@ -108,7 +106,7 @@ namespace GearBox.Tests
             gearbox.ChangeGears(rpm);
             Assert.Equal(1, gearbox.GetGear());
         }
-        
+
         // Helper method: changes up gears
         private void ChangeUpGears(GearBox gearbox, int numberOfGearsShifts)
         {
@@ -117,8 +115,7 @@ namespace GearBox.Tests
                 gearbox.ChangeGears(2001);
             }
         }
-        
-        // Helper method: creates new gearbox in whatever gear we want
+
         private GearBox CreateGearboxInGear(int gear)
         {
             var gearbox = new GearBox();

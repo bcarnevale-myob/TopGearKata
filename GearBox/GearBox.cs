@@ -2,7 +2,10 @@
 {
     public class GearBox
     {
-        private int _gear = 0;
+        private const int Neutral = 0;
+
+        private int _gear = Neutral;
+
 
         public int GetGear()
         {
@@ -10,16 +13,28 @@
         }
         public void ChangeGears(int rpm)
         {
-            if (_gear == 0)
+            const int maxGear = 6;
+            const int minGear = 1;
+            const int changeGearUpThreshold = 2000;
+            const int changeGearDownThreshold = 500;
+
+            bool shouldShiftUp() => rpm > changeGearUpThreshold && _gear < maxGear;
+            bool shouldShiftDown() => rpm < changeGearDownThreshold && _gear > minGear;
+
+
+            if (_gear == Neutral)
             {
                 _gear = 1;
             }
-            else if (rpm > 2000)
+            else if (shouldShiftUp())
             {
                 _gear++;
             }
-            
-            
+            else if (shouldShiftDown())
+            {
+                _gear--;
+            }
         }
     }
 }
+
