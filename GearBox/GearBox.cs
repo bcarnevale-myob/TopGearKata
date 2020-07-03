@@ -1,14 +1,27 @@
-﻿namespace GearBox
+﻿using System.Collections;
+using System.Collections.Generic;
+namespace GearBox
 {
     public class GearBox
     {
         private const int Neutral = 0;
-        private const int MaxGear = 6;
+
         private const int MinGear = 1;
-        private const int ChangeGearUpThreshold = 2000;
-        private const int ChangeGearDownThreshold = 500;
+
+        private int _maxGear = 6;
+        private int _changeGearUpThreshold = 2000;
+        private int _changeGearDownThreshold = 500;
+
         private int _gear = Neutral;
-        
+
+        public GearBox() { }
+        public GearBox(int maxGear, int changeGearDownThreshold, int changeGearUpThreshold)
+        {
+            _maxGear = maxGear;
+            _changeGearDownThreshold = changeGearDownThreshold;
+            _changeGearUpThreshold = changeGearUpThreshold;
+        }
+
         public int GetGear()
         {
             return _gear;
@@ -29,9 +42,9 @@
             }
         }
 
-        private bool ShouldShiftUp(int rpm) => rpm > ChangeGearUpThreshold && _gear < MaxGear;
+        private bool ShouldShiftUp(int rpm) => rpm > _changeGearUpThreshold && _gear < _maxGear;
 
-        private bool ShouldShiftDown(int rpm) => rpm < ChangeGearDownThreshold && _gear > MinGear;
+        private bool ShouldShiftDown(int rpm) => rpm < _changeGearDownThreshold && _gear > MinGear;
     }
 }
 

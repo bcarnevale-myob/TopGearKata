@@ -3,6 +3,9 @@ namespace GearBox.Tests
 {
     public class GearBoxTests
     {
+        // GOAL FOR NEXT WEEK: Be able to remove the default constructor with all tests passing
+        // Samaa is next to drive
+
         // 1. New gearbox starts in neutral
         // 2. Gearbox shifts from neutral to first gear with any RPM
         // 3. From first gear onwards, shifts up with RPM greater than 2000
@@ -15,7 +18,7 @@ namespace GearBox.Tests
         [Fact]
         public void StartsInNeutral()
         {
-            var gearbox = new GearBox();
+            var gearbox = new GearBox(6, 500, 2000);
             Assert.Equal(neutral, gearbox.GetGear());
         }
 
@@ -60,7 +63,7 @@ namespace GearBox.Tests
 
         // 4. Maximum gear is 6
         [Fact]
-        public void HasMaximumSixGears()
+        public void HasDefaultMaximumSixGears()
         {
             GearBox gearbox = CreateGearboxInGear(1);
             ChangeUpGears(gearbox, 5);
@@ -68,6 +71,7 @@ namespace GearBox.Tests
             ChangeUpGears(gearbox, 1);
             Assert.NotEqual(7, gearbox.GetGear());
         }
+
 
         // 5. Shifts down at RPM less than 500 until gear 1
         [Theory]
@@ -107,6 +111,16 @@ namespace GearBox.Tests
             Assert.Equal(1, gearbox.GetGear());
         }
 
+        [Fact]
+        public void CanShiftUpWithCustomThresholds()
+        {
+            var gearbox = new GearBox(6, 300, 3000);
+            gearbox.ChangeGears(0); //neutral to 1
+            gearbox.ChangeGears(3001); //1 to 2
+
+            Assert.Equal(2, gearbox.GetGear());
+        }
+
         // Helper method: changes up gears
         private void ChangeUpGears(GearBox gearbox, int numberOfGearsShifts)
         {
@@ -119,11 +133,13 @@ namespace GearBox.Tests
         private GearBox CreateGearboxInGear(int gear)
         {
             var gearbox = new GearBox();
+
             for (var i = 0; i < gear; i++)
             {
                 gearbox.ChangeGears(2001);
             }
             return gearbox;
         }
+
     }
 }
