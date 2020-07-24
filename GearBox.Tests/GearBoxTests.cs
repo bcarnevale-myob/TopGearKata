@@ -5,8 +5,6 @@ namespace GearBox.Tests
 {
     public class GearBoxTests
     {
-        // GOAL FOR NEXT WEEK: Be able to remove the default constructor with all tests passing
-
         // 1. New gearbox starts in neutral
         // 2. Gearbox shifts from neutral to first gear with any RPM
         // 3. From first gear onwards, shifts up with RPM greater than 2000
@@ -19,7 +17,8 @@ namespace GearBox.Tests
         [Fact]
         public void StartsInNeutral()
         {
-            var gearbox = new GearBox(new Gear(500, 2000));
+            var gears = new List<Gear>() { new Gear(500, 2000) };
+            var gearbox = new GearBox(gears);
             Assert.Equal(neutral, gearbox.GetGear());
         }
 
@@ -31,7 +30,10 @@ namespace GearBox.Tests
         [InlineData(500)]
         public void ShiftsFromNeutralToFirstWithAnyRpm(int rpm)
         {
-            var gearbox = new GearBox(new Gear(500, 2000));
+            var gears = new List<Gear>() { new Gear(500, 2000) };
+            var gearbox = new GearBox(gears);
+            gears.Clear();
+
             gearbox.ChangeGears(rpm);
             Assert.Equal(1, gearbox.GetGear());
         }
@@ -115,7 +117,8 @@ namespace GearBox.Tests
         [Fact]
         public void CanShiftUpWithCustomThresholds()
         {
-            var gearbox = new GearBox(new Gear(300, 3000));
+            var gears = new List<Gear>() { new Gear(300, 3000) };
+            var gearbox = new GearBox(gears);
             gearbox.ChangeGears(0); //neutral to 1
             gearbox.ChangeGears(3001); //1 to 2
 
@@ -123,24 +126,22 @@ namespace GearBox.Tests
         }
 
         [Fact]
-        public void CanHaveGearsWithDifferentThresholds(){
-
+        public void CanHaveGearsWithDifferentThresholds()
+        {
             var gear1 = new Gear(200, 1000);
             var gear2 = new Gear(500, 2000);
 
-            var gears = new List<Gear>(){gear1, gear2};
+            var gears = new List<Gear>() { gear1, gear2 };
 
             var gearBox = new GearBox(gears);
 
             gearBox.ChangeGears(1);     //neutral to 1
             gearBox.ChangeGears(1001);  // 1 to 2
+            gearBox.ChangeGears(1001);  // should not change
             gearBox.ChangeGears(2001);  // 2 to 3
 
             Assert.Equal(3, gearBox.GetGear());
         }
-
-        // NEXT WEEK: do we need to test max gear, list of gears?, how does gearbox know the threshholds?
-        // Tom next to drive
 
         // Helper method: changes up gears
         private void ChangeUpGears(GearBox gearbox, int numberOfGearsShifts)
@@ -151,18 +152,26 @@ namespace GearBox.Tests
             }
         }
 
+        // NEXT WEEK: go over the below method why the changes were needed
+        // making things redundant in gearbox
+        // naan is next to drive
+
         private GearBox CreateGearboxInGear(int gear)
         {
-            var gearbox = new GearBox(new Gear(500, 2000));
-
+            var gears = new List<Gear>() {
+                new Gear(500, 2000),
+                new Gear(500, 2000),
+                new Gear(500, 2000),
+                new Gear(500, 2000),
+                new Gear(500, 2000),
+                new Gear(500, 2000),
+        };
+            var gearbox = new GearBox(gears);
             for (var i = 0; i < gear; i++)
             {
                 gearbox.ChangeGears(2001);
             }
             return gearbox;
         }
-
-        
-
     }
 }

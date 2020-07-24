@@ -8,41 +8,43 @@ namespace GearBox
 
         private const int MinGear = 1;
 
-        const int _maxGear = 6;
 
-        private int _gear = Neutral;
+        private int _currentGear = Neutral;
 
-        private Gear _gearThreshold;
+        private readonly List<Gear> _gears = new List<Gear> { new Gear(int.MinValue, 0) };
 
-       
-        public GearBox(Gear gearThreshold)
+
+
+        public GearBox(List<Gear> gears)
         {
-           _gearThreshold = gearThreshold;
+            _gears.AddRange(gears);
         }
 
         public int GetGear()
         {
-            return _gear;
+            return _currentGear;
         }
         public void ChangeGears(int rpm)
         {
-            if (_gear == Neutral)
+            if (_currentGear == Neutral)
             {
-                _gear = 1;
+                _currentGear = 1;
             }
             else if (ShouldShiftUp(rpm))
             {
-                _gear++;
+                _currentGear++;
             }
             else if (ShouldShiftDown(rpm))
             {
-                _gear--;
+                _currentGear--;
             }
         }
 
-        private bool ShouldShiftUp(int rpm) => rpm > _gearThreshold.ChangeUpThreshold && _gear < _maxGear;
+        private int _maxGear => _gears.Count;
 
-        private bool ShouldShiftDown(int rpm) => rpm < _gearThreshold.ChangeDownThreshold && _gear > MinGear;
+        private bool ShouldShiftUp(int rpm) => rpm > _gears[_currentGear].ChangeUpThreshold && _currentGear < _maxGear;
+
+        private bool ShouldShiftDown(int rpm) => rpm < _gears[_currentGear].ChangeDownThreshold && _currentGear > MinGear;
     }
 }
 
