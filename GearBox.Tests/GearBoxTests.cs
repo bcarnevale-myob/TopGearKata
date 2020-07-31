@@ -17,8 +17,7 @@ namespace GearBox.Tests
         [Fact]
         public void StartsInNeutral()
         {
-            var gears = new List<Gear>() { new Gear(500, 2000) };
-            var gearbox = new GearBox(gears);
+            var gearbox = new GearBox();
             Assert.Equal(neutral, gearbox.GetGear());
         }
 
@@ -30,9 +29,7 @@ namespace GearBox.Tests
         [InlineData(500)]
         public void ShiftsFromNeutralToFirstWithAnyRpm(int rpm)
         {
-            var gears = new List<Gear>() { new Gear(500, 2000) };
-            var gearbox = new GearBox(gears);
-            gears.Clear();
+            var gearbox = new GearBox();
 
             gearbox.ChangeGears(rpm);
             Assert.Equal(1, gearbox.GetGear());
@@ -117,7 +114,7 @@ namespace GearBox.Tests
         [Fact]
         public void CanShiftUpWithCustomThresholds()
         {
-            var gears = new List<Gear>() { new Gear(300, 3000) };
+            var gears = new List<GearThreshold>() { new GearThreshold(300, 3000), new GearThreshold(200, 2000) };
             var gearbox = new GearBox(gears);
             gearbox.ChangeGears(0); //neutral to 1
             gearbox.ChangeGears(3001); //1 to 2
@@ -128,11 +125,11 @@ namespace GearBox.Tests
         [Fact]
         public void CanHaveGearsWithDifferentThresholds()
         {
-            var gear1 = new Gear(200, 1000);
-            var gear2 = new Gear(500, 2000);
+            var gear1 = new GearThreshold(200, 1000);
+            var gear2 = new GearThreshold(500, 2000);
+            var gear3 = new GearThreshold(300, 3000);
 
-            var gears = new List<Gear>() { gear1, gear2 };
-
+            var gears = new List<GearThreshold>() { gear1, gear2, gear3};
             var gearBox = new GearBox(gears);
 
             gearBox.ChangeGears(1);     //neutral to 1
@@ -152,21 +149,14 @@ namespace GearBox.Tests
             }
         }
 
-        // NEXT WEEK: go over the below method why the changes were needed
-        // making things redundant in gearbox
-        // naan is next to drive
+        // LAST WEEK: created second constructor, fixed all the test, discussed what confidence is given by two custom tests
+        // NEXT WEEK: fix the test names in accordance with it being custom or default/old
+        // working with a factory method in gear thresholds
+        // michelles turn to drive
 
         private GearBox CreateGearboxInGear(int gear)
         {
-            var gears = new List<Gear>() {
-                new Gear(500, 2000),
-                new Gear(500, 2000),
-                new Gear(500, 2000),
-                new Gear(500, 2000),
-                new Gear(500, 2000),
-                new Gear(500, 2000),
-        };
-            var gearbox = new GearBox(gears);
+            var gearbox = new GearBox();
             for (var i = 0; i < gear; i++)
             {
                 gearbox.ChangeGears(2001);
