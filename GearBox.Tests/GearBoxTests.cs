@@ -114,7 +114,7 @@ namespace GearBox.Tests
         [Fact]
         public void CanShiftUpWithCustomThresholds()
         {
-            var gears = new List<GearThreshold>() { new GearThreshold(300, 3000), new GearThreshold(200, 2000) };
+            var gears = new List<Gear>() { Gear.CreateFirst(1000), Gear.CreateTop(300) };
             var gearbox = new GearBox(gears);
             gearbox.ChangeGears(0); //neutral to 1
             gearbox.ChangeGears(3001); //1 to 2
@@ -125,11 +125,11 @@ namespace GearBox.Tests
         [Fact]
         public void CanHaveGearsWithDifferentThresholds()
         {
-            var gear1 = new GearThreshold(200, 1000);
-            var gear2 = new GearThreshold(500, 2000);
-            var gear3 = new GearThreshold(300, 3000);
+            var gear1 = Gear.CreateFirst(1000);
+            var gear2 = Gear.Create(500, 2000);
+            var gear3 = Gear.CreateTop(300);
 
-            var gears = new List<GearThreshold>() { gear1, gear2, gear3};
+            var gears = new List<Gear>() { gear1, gear2, gear3};
             var gearBox = new GearBox(gears);
 
             gearBox.ChangeGears(1);     //neutral to 1
@@ -149,9 +149,9 @@ namespace GearBox.Tests
             }
         }
 
-        // LAST WEEK: created second constructor, fixed all the test, discussed what confidence is given by two custom tests
-        // NEXT WEEK: fix the test names in accordance with it being custom or default/old
-        // working with a factory method in gear thresholds
+        // LAST WEEK: factory methods
+        // NEXT WEEK: problem: createFirst, createTop can be used more than once and in the wrong place
+        // maybe: checks on gear, throw exceptions
         // michelles turn to drive
 
         private GearBox CreateGearboxInGear(int gear)

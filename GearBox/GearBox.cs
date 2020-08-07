@@ -10,22 +10,22 @@ namespace GearBox
 
         private int _currentGear = Neutral;
 
-        private readonly List<GearThreshold> _gearThresholds = new List<GearThreshold> { new GearThreshold(int.MinValue, 0) };
+        private readonly List<Gear> _gearThresholds = new List<Gear> { Gear.Create(int.MinValue, 0) };
 
-        public GearBox(List<GearThreshold> gearThresholds)
+        public GearBox(List<Gear> gearThresholds)
         {
             _gearThresholds.AddRange(gearThresholds);
         }
 
-         public GearBox()
+        public GearBox()
         {
-            var gearThresholds = new List<GearThreshold>() {
-                new GearThreshold(500, 2000),
-                new GearThreshold(500, 2000),
-                new GearThreshold(500, 2000),
-                new GearThreshold(500, 2000),
-                new GearThreshold(500, 2000),
-                new GearThreshold(500, 2000),
+            var gearThresholds = new List<Gear>() {
+                Gear.CreateFirst(2000),
+                Gear.Create(500,2000),
+                Gear.Create(500,2000),
+                Gear.Create(500,2000),
+                Gear.Create(500,2000),
+                Gear.CreateTop(500),
             };
             _gearThresholds.AddRange(gearThresholds);
         }
