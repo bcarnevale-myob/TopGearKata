@@ -15,12 +15,12 @@ namespace GearBox
 
         public static Gear CreateTop(int changeDownThreshold)
         {
-            return new Gear(changeDownThreshold,int.MaxValue);
+            return new Gear(changeDownThreshold, int.MaxValue);
         }
 
         public static Gear Create(int changeDownThreshold, int changeUpThreshold)
         {
-            return new Gear(changeDownThreshold,changeUpThreshold);
+            return new Gear(changeDownThreshold, changeUpThreshold);
         }
 
         public static Gear CreateFirst(int changeUpThreshold)

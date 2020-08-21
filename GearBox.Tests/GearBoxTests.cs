@@ -110,15 +110,36 @@ namespace GearBox.Tests
 //---------------------------------------------------------------------------------------------------------
         public class CustomBehaviourTests
         {
+            //missing tests:
+            //can only have 1 first gear
+            [Fact]
+            public void OnlyHasOneFirstGear()
+            {
+                var gear1 = Gear.CreateFirst(1000);
+                var gear2 = Gear.CreateFirst(1001);
+                var gears = new List<Gear>() { gear1, gear2 };
+                var gearBox = new GearBox(gears);
+                //TODO: finish off this test
+
+            }
+            //can only have 1 top gear
+            //gears must be in sequential order
+
             [Fact]
             public void CanShiftUpWithCustomThresholds()
             {
-                var gears = new List<Gear>() { Gear.CreateFirst(1000), Gear.CreateTop(300) };
+                var gear1 = Gear.CreateFirst(1000);
+                var gear2 = Gear.CreateTop(300);
+                var gears = new List<Gear>() { gear1, gear2 };
                 var gearbox = new GearBox(gears);
+
                 gearbox.ChangeGears(0); 
                 gearbox.ChangeGears(3001); 
 
-                Assert.Equal(2, gearbox.GetGear());
+                var expectedGear = 2;
+                var actualGear = gearbox.GetGear();
+                
+                Assert.Equal(expectedGear, actualGear);
             }
 
             [Fact]
@@ -127,7 +148,6 @@ namespace GearBox.Tests
                 var gear1 = Gear.CreateFirst(1000);
                 var gear2 = Gear.Create(500, 2000);
                 var gear3 = Gear.CreateTop(300);
-
                 var gears = new List<Gear>() { gear1, gear2, gear3};
                 var gearBox = new GearBox(gears);
 
@@ -136,7 +156,10 @@ namespace GearBox.Tests
                 gearBox.ChangeGears(1001);  
                 gearBox.ChangeGears(2001);  
 
-                Assert.Equal(3, gearBox.GetGear());
+                var expectedGear = 3;
+                var actualGear = gearBox.GetGear();
+
+                Assert.Equal(expectedGear, actualGear);
             }
         }       
 
